@@ -32,3 +32,9 @@ class UserResponse(BaseModel):
     last_name: str
     email: str
     created_at: datetime
+
+
+class Error(BaseModel):
+    code: int
+    message: str
+    detail: str

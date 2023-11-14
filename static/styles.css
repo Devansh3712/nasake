@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap');
+
+body {
+	background-color: rgb(82, 169, 159);
+	font-family: 'Lexend', sans-serif;
+	color: #ffffff;
+}
+
+.navbar {
+	height: 100%;
+	width: 8%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #e27d60;
+	overflow: hidden;
+}
+
+.navbar a {
+	padding: 20px 10px 20px 25px;
+	text-decoration: none;
+	color: #ffffff;
+	display: block;
+	font-size: 18px;
+	cursor: pointer;
+	border-bottom: 2px solid #e8a87c;
+}
+
+.navbar a:hover {
+	background-color: #e8a87c;
+}
+
+.navbar a.active {
+	background-color: #e8a87c;
+}
+
+.home,
+.auth,
+.error {
+	margin: 3% 30% 5% 13%;
+}
+
+.heading {
+	font-size: 40px;
+}
+
+.sub-heading {
+	margin-top: -15px;
+}
+
+::placeholder {
+	color: rgb(230, 230, 230);
+}
+
+.auth input {
+	font-family: inherit;
+	width: 300px;
+	height: 40px;
+	display: block;
+	margin-bottom: 10px;
+	border: 1px solid #ffffff;
+	border-radius: 10px;
+	background-color: inherit;
+	color: white;
+	padding-left: 10px;
+}
+
+.auth button {
+	width: 100px;
+	height: 35px;
+	border: 1px solid #956b78;
+	border-radius: 10px;
+	background-color: #c38d9e;
+	color: white;
+	font-family: inherit;
+}
+
+.auth button:hover {
+	cursor: pointer;
+	background-color: #956b78;
+}

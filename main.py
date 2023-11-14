@@ -1,13 +1,14 @@
-from __future__ import annotations
-
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
 
 from config import settings
 from models.database import Base, engine
-from routers import auth
+from routers import auth, home
 
 
 @asynccontextmanager
@@ -17,10 +18,24 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(auth.router)
+app.mount("/static", StaticFiles(directory="static"), name="static")
 app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
+app.include_router(auth.router)
+app.include_router(home.router)
+
+templates = Jinja2Templates("templates")
 
 
-@app.get("/")
-async def index():
-    ...
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+
+@app.get("/signup", response_class=HTMLResponse)
+async def signup(request: Request):
+    return templates.TemplateResponse("signup.html", {"request": request})
+
+
+@app.get("/login", response_class=HTMLResponse)
+async def login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
