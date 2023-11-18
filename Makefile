@@ -1,5 +1,10 @@
+PY = venv/bin/python3
+
 run:
-	gunicorn -c gunicorn.conf.py main:app
+	$(PY) -m gunicorn -c gunicorn.conf.py server.api:app
 
 dev:
-	uvicorn main:app --reload
+	$(PY) -m uvicorn server.api:app --reload
+
+reqs:
+	$(PY) -m poetry export -f requirements.txt --output requirements.txt --without-hashes

@@ -8,12 +8,12 @@ body {
 
 .navbar {
 	height: 100%;
-	width: 8%;
-	position: absolute;
+	width: 9%;
+	z-index: 1;
+	position: fixed;
 	left: 0;
 	top: 0;
 	background-color: #e27d60;
-	overflow: hidden;
 }
 
 .navbar a {
@@ -37,7 +37,7 @@ body {
 .home,
 .auth,
 .error {
-	margin: 3% 30% 5% 13%;
+	margin: 3% 30% 0% 13%;
 }
 
 .heading {
@@ -76,6 +76,78 @@ body {
 }
 
 .auth button:hover {
+	cursor: pointer;
+	background-color: #956b78;
+}
+
+.whatsapp button {
+	margin-top: 25px;
+	width: 300px;
+	height: 50px;
+	border: 1px solid #41b3a3;
+	border-radius: 10px;
+	background-color: #139483;
+	color: white;
+	font-family: inherit;
+	font-size: 15px;
+}
+
+.whatsapp button:hover {
+	cursor: pointer;
+	background-color: #0e7c6e;
+}
+
+.row {
+	margin-top: 4%;
+	margin-left: 13%;
+	display: table;
+	width: 80%;
+	table-layout: fixed;
+	border-spacing: 10px;
+}
+
+.column {
+	display: table-cell;
+	text-align: center;
+	padding: 0px 10px;
+}
+
+.card-row {
+	margin-left: 13%;
+	display: table;
+	table-layout: fixed;
+}
+
+.card-column {
+	display: table-cell;
+}
+
+.card {
+	width: 300px;
+	height: 200px;
+	background-color: #378480;
+	margin-right: 30px;
+	border-radius: 20px;
+}
+
+.card p {
+	font-size: 25px;
+	padding: 30px 30px 10px 30px;
+}
+
+.card button {
+	color: white;
+	font-size: 14px;
+	font-family: inherit;
+	margin-left: 30px;
+	width: 100px;
+	height: 40px;
+	border: 1px solid #956b78;
+	border-radius: 20px;
+	background-color: #c38d9e;
+}
+
+.card button:hover {
 	cursor: pointer;
 	background-color: #956b78;
 }

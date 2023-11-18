@@ -1,13 +1,14 @@
 from __future__ import annotations
+from typing import Optional
 
 import bcrypt
-from fastapi import status, APIRouter, Request
+from fastapi import status, APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from internal.error import *
+from internal.session import get_current_user
 from models.user import *
-from routers.home import home
 from schemas import UserLogin, UserSignUp
 
 router = APIRouter(prefix="/auth")
@@ -44,5 +45,17 @@ async def login(request: Request):
         return templates.TemplateResponse(
             "error.html", {"request": request, "error": incorrect_password}
         )
+    # Create a user session
     request.session["user_id"] = db_user.id
-    return await home(request, db_user)
+    return RedirectResponse("/home", status.HTTP_303_SEE_OTHER)
+
+
+@router.get("/logout")
+async def logout(request: Request, user: Optional[User] = Depends(get_current_user)):
+    if not user:
+        return templates.TemplateResponse(
+            "error.html", {"request": request, "error": unauthorized}
+        )
+    # Delete a user session
+    del request.session["user_id"]
+    return templates.TemplateResponse("message.html", {"request": request})

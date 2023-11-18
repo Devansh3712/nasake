@@ -13,7 +13,7 @@ incorrect_password = Error(
 unauthorized = Error(
     code=status.HTTP_401_UNAUTHORIZED,
     message="User not authorized",
-    detail="In order to view this page you need to be logged in",
+    detail="In order to access this page you need to be logged in",
 )
 
 unable_to_make_user = Error(
