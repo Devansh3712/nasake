@@ -2,7 +2,7 @@ from typing import Callable
 
 from fastapi import status
 
-from schemas import Error
+from models.schemas import Error
 
 incorrect_password = Error(
     code=status.HTTP_401_UNAUTHORIZED,

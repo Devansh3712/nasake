@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Optional
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import status, APIRouter, Depends, Request
 from fastapi.templating import Jinja2Templates
 
 from internal.error import unauthorized
@@ -18,7 +18,9 @@ async def create_journal_entry(
 ):
     if not user:
         return templates.TemplateResponse(
-            "error.html", {"request": request, "error": unauthorized}
+            "error.html",
+            {"request": request, "error": unauthorized},
+            status.HTTP_401_UNAUTHORIZED,
         )
 
 
@@ -28,5 +30,7 @@ async def save_journal_entry(
 ):
     if not user:
         return templates.TemplateResponse(
-            "error.html", {"request": request, "error": unauthorized}
+            "error.html",
+            {"request": request, "error": unauthorized},
+            status.HTTP_401_UNAUTHORIZED,
         )

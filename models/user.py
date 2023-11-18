@@ -3,7 +3,7 @@ from __future__ import annotations
 from sqlalchemy import Column, DateTime, String
 
 from .database import Base, Session
-from schemas import UserSignUp
+from models.schemas import UserSignUp
 
 
 class User(Base):

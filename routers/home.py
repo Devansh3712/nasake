@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Optional
 
 import httpx
-from fastapi import APIRouter, Depends, Request
+from fastapi import status, APIRouter, Depends, Request
 from fastapi.templating import Jinja2Templates
 
 from internal.error import unauthorized
@@ -17,7 +17,9 @@ templates = Jinja2Templates("templates")
 async def home(request: Request, user: Optional[User] = Depends(get_current_user)):
     if not user:
         return templates.TemplateResponse(
-            "error.html", {"request": request, "error": unauthorized}
+            "error.html",
+            {"request": request, "error": unauthorized},
+            status.HTTP_401_UNAUTHORIZED,
         )
     response = httpx.get("https://zenquotes.io/api/random")
     data = response.json()

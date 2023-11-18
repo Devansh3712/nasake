@@ -9,7 +9,7 @@ from fastapi.templating import Jinja2Templates
 from internal.error import *
 from internal.session import get_current_user
 from models.user import *
-from schemas import UserLogin, UserSignUp
+from models.schemas import UserLogin, UserSignUp
 
 router = APIRouter(prefix="/auth")
 templates = Jinja2Templates("templates")
@@ -21,11 +21,15 @@ async def signup(request: Request):
     user = UserSignUp(**form)  # type: ignore
     if read_user_by_email(user.email):
         return templates.TemplateResponse(
-            "error.html", {"request": request, "error": user_exists(user.email)}
+            "error.html",
+            {"request": request, "error": user_exists(user.email)},
+            status.HTTP_403_FORBIDDEN,
         )
     if not create_user(user):
         return templates.TemplateResponse(
-            "error.html", {"request": request, "error": unable_to_make_user}
+            "error.html",
+            {"request": request, "error": unable_to_make_user},
+            status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     return RedirectResponse("/login", status.HTTP_303_SEE_OTHER)
 
@@ -39,11 +43,14 @@ async def login(request: Request):
         return templates.TemplateResponse(
             "error.html",
             {"request": request, "error": user_does_not_exist(user.email)},
+            status.HTTP_403_FORBIDDEN,
         )
     result = bcrypt.checkpw(user.password.encode(), db_user.password.encode("utf-8"))
     if not result:
         return templates.TemplateResponse(
-            "error.html", {"request": request, "error": incorrect_password}
+            "error.html",
+            {"request": request, "error": incorrect_password},
+            status.HTTP_401_UNAUTHORIZED,
         )
     # Create a user session
     request.session["user_id"] = db_user.id
@@ -54,7 +61,9 @@ async def login(request: Request):
 async def logout(request: Request, user: Optional[User] = Depends(get_current_user)):
     if not user:
         return templates.TemplateResponse(
-            "error.html", {"request": request, "error": unauthorized}
+            "error.html",
+            {"request": request, "error": unauthorized},
+            status.HTTP_401_UNAUTHORIZED,
         )
     # Delete a user session
     del request.session["user_id"]
