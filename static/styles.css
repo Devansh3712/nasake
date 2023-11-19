@@ -151,3 +151,66 @@ body {
 	cursor: pointer;
 	background-color: #956b78;
 }
+
+.journal-row {
+	margin-left: 13%;
+	display: table;
+	table-layout: fixed;
+}
+
+.journal-column textarea {
+	height: 400px;
+	width: 550px;
+	color: white;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 20px;
+	background-color: #378480;
+	border: 1px solid #0e7c6e;
+	border-radius: 30px;
+	resize: none;
+	position: absolute;
+	box-sizing: border-box;
+	margin: 0px 30px 10px 80px;
+}
+
+.journal-column button {
+	margin-top: 430px;
+	color: white;
+	font-size: 14px;
+	font-family: inherit;
+	margin-left: 30px;
+	width: 100px;
+	height: 40px;
+	border: 1px solid #956b78;
+	border-radius: 20px;
+	background-color: #c38d9e;
+	position: absolute;
+}
+
+.journal-column button:hover {
+	cursor: pointer;
+	background-color: #956b78;
+}
+
+.analysis {
+	margin-top: 40px;
+}
+
+.analysis table {
+	font-family: inherit;
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 500px;
+}
+
+.analysis td,
+th {
+	border: 2px solid #378480;
+	padding: 10px;
+	text-align: center;
+}
+
+.analysis tr:nth-child(even) {
+	background-color: #139483;
+}

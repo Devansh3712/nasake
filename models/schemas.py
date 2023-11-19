@@ -2,7 +2,7 @@ from datetime import datetime
 from uuid import uuid4
 
 import bcrypt
-from pydantic import BaseModel, ConfigDict, EmailStr
+from pydantic import BaseModel, EmailStr
 
 
 class UserSignUp(BaseModel):
@@ -24,17 +24,14 @@ class UserLogin(BaseModel):
     password: str
 
 
-class UserResponse(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    id: str
-    first_name: str
-    last_name: str
-    email: str
-    created_at: datetime
-
-
 class Error(BaseModel):
     code: int
     message: str
     detail: str
+
+
+class JournalRequest(BaseModel):
+    id: str = uuid4().hex
+    user_id: str
+    body: str
+    created_at: datetime = datetime.now()

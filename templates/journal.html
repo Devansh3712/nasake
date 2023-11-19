@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block title %}Journal{% endblock %} {% block
+content %}
+<div class="home">
+	<h2>Write a Journal Entry</h2>
+	<p>
+		With Nasake, you can write a daily journal entry about your day and we will
+		analyse the sentiment and emotion of the text, which may help you get to
+		know more about how you actually feel.
+	</p>
+</div>
+<div class="journal-row">
+	<div class="journal-column">
+		<h3>Some journaling prompts:</h3>
+		<ul>
+			<li>Talk about your day</li>
+			<li>Identify things you're grateful for</li>
+			<li>Write a list of your coping mechanisms</li>
+			<li>Describe a goal</li>
+			<li>Write about how different you were 5 years ago</li>
+			<li>Write a letter to your body</li>
+			<li>List and describe your emotions</li>
+			<li>Write about how you'd describe yourself to a stranger</li>
+			<li>Describe the best compliment you've ever gotten</li>
+			<li>Write a message for yourself on bad days</li>
+		</ul>
+	</div>
+	<div class="journal-column">
+		<form action="/journal" method="post">
+			<textarea name="body" maxlength="1500"></textarea>
+			<button>Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

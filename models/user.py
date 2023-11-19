@@ -1,8 +1,8 @@
-from __future__ import annotations
-
 from sqlalchemy import Column, DateTime, String
+from sqlalchemy.orm import relationship
 
-from .database import Base, Session
+from models.database import Base, Session
+from models.journal import Journal as _
 from models.schemas import UserSignUp
 
 
@@ -15,6 +15,7 @@ class User(Base):
     email = Column("email", String, unique=True, nullable=False)
     password = Column("password", String, nullable=False)
     created_at = Column("created_at", DateTime, nullable=False)
+    journals = relationship("Journal")
 
 
 def create_user(data: UserSignUp) -> bool:

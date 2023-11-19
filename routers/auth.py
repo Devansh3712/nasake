@@ -1,6 +1,3 @@
-from __future__ import annotations
-from typing import Optional
-
 import bcrypt
 from fastapi import status, APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
@@ -22,13 +19,13 @@ async def signup(request: Request):
     if read_user_by_email(user.email):
         return templates.TemplateResponse(
             "error.html",
-            {"request": request, "error": user_exists(user.email)},
+            {"request": request, "error": UserExists(user.email)},
             status.HTTP_403_FORBIDDEN,
         )
     if not create_user(user):
         return templates.TemplateResponse(
             "error.html",
-            {"request": request, "error": unable_to_make_user},
+            {"request": request, "error": UnableToMakeUser},
             status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     return RedirectResponse("/login", status.HTTP_303_SEE_OTHER)
@@ -42,14 +39,14 @@ async def login(request: Request):
     if not db_user:
         return templates.TemplateResponse(
             "error.html",
-            {"request": request, "error": user_does_not_exist(user.email)},
+            {"request": request, "error": UserDoesNotExist(user.email)},
             status.HTTP_403_FORBIDDEN,
         )
     result = bcrypt.checkpw(user.password.encode(), db_user.password.encode("utf-8"))
     if not result:
         return templates.TemplateResponse(
             "error.html",
-            {"request": request, "error": incorrect_password},
+            {"request": request, "error": IncorrectPassword},
             status.HTTP_401_UNAUTHORIZED,
         )
     # Create a user session
@@ -58,11 +55,11 @@ async def login(request: Request):
 
 
 @router.get("/logout")
-async def logout(request: Request, user: Optional[User] = Depends(get_current_user)):
+async def logout(request: Request, user: User | None = Depends(get_current_user)):
     if not user:
         return templates.TemplateResponse(
             "error.html",
-            {"request": request, "error": unauthorized},
+            {"request": request, "error": Unauthorized},
             status.HTTP_401_UNAUTHORIZED,
         )
     # Delete a user session

@@ -8,7 +8,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from config import settings
 from models.database import Base, engine
-from routers import auth, home
+from routers import auth, journal, home
 
 
 @asynccontextmanager
@@ -21,6 +21,7 @@ app = FastAPI(lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
 app.include_router(auth.router)
+app.include_router(journal.router)
 app.include_router(home.router)
 
 templates = Jinja2Templates("templates")
