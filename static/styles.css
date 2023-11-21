@@ -158,6 +158,10 @@ body {
 	table-layout: fixed;
 }
 
+.journal-column {
+	display: table-cell;
+}
+
 .journal-column textarea {
 	height: 400px;
 	width: 550px;
