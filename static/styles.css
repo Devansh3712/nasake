@@ -8,12 +8,13 @@ body {
 
 .navbar {
 	height: 100%;
-	width: 9%;
+	width: 10%;
 	z-index: 1;
 	position: fixed;
 	left: 0;
 	top: 0;
 	background-color: #e27d60;
+	overflow: hidden;
 }
 
 .navbar a {

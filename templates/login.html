@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
-%}
+{% set active_page = "login" %} {% extends "base.html" %} {% block title
+%}Login{% endblock %} {% block content %}
 <div class="auth">
 	<h1>Login</h1>
 	<form action="/auth/login" method="post">

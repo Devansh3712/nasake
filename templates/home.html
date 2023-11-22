@@ -1,9 +1,10 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
+{% set active_page = "home" %} {% extends "base.html" %} {% block title %}Home{%
+endblock %} {% block content %}
 <div class="home">
 	<h2>Hello, {{ user.first_name }}</h2>
-	<p>{{ quote }}</p>
+	<p><i>{{ quote }}</i></p>
 	<h2>Resources</h2>
+	<p>Some mental health resources that can help you out on a daily basis.</p>
 </div>
 <div class="card-row">
 	<div class="card-column">
