@@ -1,5 +1,45 @@
 {% extends "base.html" %}{% block title %}Results{% endblock %} {% block content
 %}
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+	google.charts.load('current', { packages: ['corechart'] });
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		const jsonData = {{ entry.emotions|tojson }}
+		const data = new google.visualization.DataTable();
+		data.addColumn('string', 'emotion');
+		data.addColumn('number', 'percentagee');
+
+		Object.keys(jsonData).forEach((key) => {
+			const value = jsonData[key];
+			data.addRow([key, value]);
+		});
+
+		const options = {
+			width: 500,
+			height: 400,
+			backgroundColor: '#52a99f',
+			fontName: 'lexend',
+			legend: {
+				alignment: 'center',
+				textStyle: {
+					fontSize: 12,
+					color: '#ffffff',
+				},
+			},
+			chartArea: {
+				width: 400,
+				height: 250,
+			},
+		};
+
+		const chart = new google.visualization.PieChart(
+			document.getElementById('pie-chart'),
+		);
+		chart.draw(data, options);
+	}
+</script>
 <div class="home">
 	<h2>Journal Entry Analysis Results</h2>
 	<p>
@@ -10,20 +50,7 @@
 </div>
 <div class="analysis">
 	<div class="journal-row">
-		<div class="journal-column">
-			<table>
-				<tr>
-					<th>Emotion</th>
-					<th>Percentage</th>
-				</tr>
-				{% for emotion in entry.emotions %}
-				<tr>
-					<td>{{ emotion }}</td>
-					<td>{{ "%.2f"|format(entry.emotions[emotion]) }}</td>
-				</tr>
-				{% endfor %}
-			</table>
-		</div>
+		<div class="journal-column" id="pie-chart"></div>
 		<div class="journal-column">
 			<textarea readonly>{{ entry.body }}</textarea>
 		</div>
