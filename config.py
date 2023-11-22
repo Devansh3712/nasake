@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str
     POSTGRES_HOST: str
     POSTGRES_DATABASE: str
+    OPENAI_API_KEY: str
 
 
 @lru_cache()

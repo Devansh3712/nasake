@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Chat{% endblock %}{% block content %}
+<script src="{{ url_for('static', path='/chat.js') }}" defer></script>
+<div class="home">
+	<h2>Tsuki</h2>
+	<p>
+		Tsuki is a chatbot to whom you can vent to about anything you want. The
+		conversation is private, anonymous and isn't stored anywhere.
+	</p>
+	<div class="chatbot">
+		<input type="text" id="message" placeholder="Type your message" />
+		<button id="send">Send</button>
+		<div class="chat-area">
+			<div id="chats"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}

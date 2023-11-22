@@ -303,6 +303,17 @@ files = [
 ]
 
 [[package]]
+name = "distro"
+version = "1.8.0"
+description = "Distro - an OS platform information API"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "distro-1.8.0-py3-none-any.whl", hash = "sha256:99522ca3e365cac527b44bde033f64c6945d90eb9f769703caaec52b09bbd3ff"},
+    {file = "distro-1.8.0.tar.gz", hash = "sha256:02e111d1dc6a50abb8eed6bf31c3e48ed8b0830d1ea2a1b78c61765c2513fdd8"},
+]
+
+[[package]]
 name = "dnspython"
 version = "2.4.2"
 description = "DNS toolkit"
@@ -1058,6 +1069,28 @@ files = [
 rsa = ["cryptography (>=3.0.0)"]
 signals = ["blinker (>=1.4.0)"]
 signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
+
+[[package]]
+name = "openai"
+version = "1.3.4"
+description = "The official Python library for the openai API"
+optional = false
+python-versions = ">=3.7.1"
+files = [
+    {file = "openai-1.3.4-py3-none-any.whl", hash = "sha256:a8daed9553bbfc9e6d6a74615a2d48e4ff293d74d51f75b45ff18a9edbe61ce3"},
+    {file = "openai-1.3.4.tar.gz", hash = "sha256:9fd7a8d9efbff4c35b4026266432e49372ca0da653a5d12dac3e4330f7e29b88"},
+]
+
+[package.dependencies]
+anyio = ">=3.5.0,<4"
+distro = ">=1.7.0,<2"
+httpx = ">=0.23.0,<1"
+pydantic = ">=1.9.0,<3"
+tqdm = ">4"
+typing-extensions = ">=4.5,<5"
+
+[package.extras]
+datalib = ["numpy (>=1)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
 
 [[package]]
 name = "opt-einsum"
@@ -2453,4 +2486,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.11"
-content-hash = "2c33534d18d4bbd73522b1371e98df1b0d94d30f4a3f5c05800e81e6534b1200"
+content-hash = "c16a849b88ecfb3c0e5accc8d13c2e8fde12b87840168f19fbae135ebbf5806b"

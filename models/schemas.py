@@ -35,3 +35,8 @@ class JournalRequest(BaseModel):
     user_id: str
     body: str
     created_at: datetime = datetime.now()
+
+
+class ChatbotRequest(BaseModel):
+    message: str
+    timestap: datetime = datetime.now()

@@ -4,11 +4,12 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
 from config import settings
 from models.database import Base, engine
-from routers import auth, journal, home
+from routers import auth, chat, journal, home
 
 
 @asynccontextmanager
@@ -20,7 +21,15 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(auth.router)
+app.include_router(chat.router)
 app.include_router(journal.router)
 app.include_router(home.router)
 
