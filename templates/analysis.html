@@ -6,7 +6,7 @@
 	google.charts.setOnLoadCallback(drawChart);
 
 	function drawChart() {
-		const jsonData = {{ entry.emotions|tojson }}
+		const jsonData = {{ entry.emotions|tojson }};
 		const data = new google.visualization.DataTable();
 		data.addColumn('string', 'emotion');
 		data.addColumn('number', 'percentagee');
@@ -24,13 +24,18 @@
 			legend: {
 				alignment: 'center',
 				textStyle: {
-					fontSize: 12,
+					fontSize: 14,
 					color: '#ffffff',
 				},
 			},
 			chartArea: {
 				width: 400,
 				height: 250,
+			},
+			animation: {
+				startup: true,
+				duration: 1000,
+				easing: 'in',
 			},
 		};
 
@@ -43,9 +48,8 @@
 <div class="home">
 	<h2>Journal Entry Analysis Results</h2>
 	<p>
-		Analysis of entry on {{ entry.created_at.strftime("%d %B, %Y") }}. Entries
-		with more percentage are likely to give you a better perspective of the
-		contents of the entry.
+		Analysis of entry on {{ entry.created_at.strftime("%d %B, %Y") }}. The
+		following pie chart shows the percentage of emotions of the entry.
 	</p>
 </div>
 <div class="analysis">

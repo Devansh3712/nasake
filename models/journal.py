@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, ForeignKey, JSON, String, Text
+from sqlalchemy import desc, Column, DateTime, ForeignKey, JSON, String, Text
 
 from models.database import Base, Session
 from models.schemas import JournalRequest
@@ -29,6 +29,15 @@ def read_entry_by_id(id: str) -> Journal | None:
     try:
         with Session() as session:
             result = session.query(Journal).filter(Journal.id == id).one()
+        return result
+    except:
+        return None
+
+
+def read_recent_entry() -> Journal | None:
+    try:
+        with Session() as session:
+            result = session.query(Journal).order_by(desc(Journal.created_at)).first()
         return result
     except:
         return None

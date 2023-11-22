@@ -36,7 +36,7 @@ async def chat_page(request: Request, user: User | None = Depends(get_current_us
 @router.post("/")
 async def chatbot(request: ChatbotRequest):
     messages.append({"role": "user", "content": request.message})
-    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages)  # type: ignore
+    response = client.chat.completions.create(model="gpt-3.5-turbo-16k-0613", messages=messages)  # type: ignore
     chat_response = response.choices[0].message.content
     messages.append({"role": "assistant", "content": chat_response})  # type: ignore
     return chat_response

@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Callable
 
 from fastapi import status
@@ -44,4 +45,11 @@ JournalEntryDoesNotExist = Error(
     code=status.HTTP_404_NOT_FOUND,
     message="Journal entry does not exist",
     detail="The journal entry you're trying to find doesn't exist",
+)
+
+DailyJournalCompleted: Callable[[datetime], Error] = lambda date: Error(
+    code=status.HTTP_400_BAD_REQUEST,
+    message="Daily journal entry written",
+    detail=f"Journal for {date.strftime('%d %B, %Y')} has already been written.\
+        You can only write one entry per day, try again tomorrow",
 )

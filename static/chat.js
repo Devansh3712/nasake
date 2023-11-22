@@ -42,3 +42,8 @@ document.getElementById('message').addEventListener('keydown', (event) => {
 		sendMessage();
 	}
 });
+
+window.addEventListener('beforeunload', (event) => {
+	event.preventDefault();
+	event.returnValue = 'Reloading will clear the conversation, continue?';
+});

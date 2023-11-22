@@ -1,9 +1,12 @@
+from datetime import datetime
+
 from fastapi import status, APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from internal.analysis import emotion_analyzer
 from internal.error import (
+    DailyJournalCompleted,
     JournalEntryDoesNotExist,
     UnableToMakeJournalEntry,
     Unauthorized,
@@ -28,6 +31,15 @@ async def create_journal_entry(
             "error.html",
             {"request": request, "error": Unauthorized},
             status.HTTP_401_UNAUTHORIZED,
+        )
+    today = datetime.now()
+    recent_entry = read_recent_entry()
+    diff = today - recent_entry.created_at  # type: ignore
+    if diff.days < 1:
+        return templates.TemplateResponse(
+            "error.html",
+            {"request": request, "error": DailyJournalCompleted(today)},
+            status.HTTP_400_BAD_REQUEST,
         )
     return templates.TemplateResponse("journal.html", {"request": request})
 
