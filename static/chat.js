@@ -4,7 +4,7 @@ async function sendMessage() {
 		const chat = document.getElementById('chats');
 		const element = document.createElement('div');
 		element.classList.add('chat-user');
-		element.textContent = 'You: ' + message;
+		element.textContent = 'You:\n\n' + message;
 		chat.appendChild(element);
 		document.getElementById('message').value = '';
 
@@ -30,7 +30,7 @@ async function sendMessage() {
 		const botMessage = await response.json();
 		const bot = document.createElement('div');
 		bot.classList.add('chat-bot');
-		bot.textContent = 'Tsuki: ' + String(botMessage);
+		bot.textContent = 'Tsuki:\n\n' + String(botMessage);
 		chat.appendChild(bot);
 	}
 }

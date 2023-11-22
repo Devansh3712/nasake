@@ -219,10 +219,6 @@ th {
 	background-color: #139483;
 }
 
-.chatbot {
-	margin-top: 40px;
-}
-
 .chatbot input {
 	margin-bottom: 10px;
 	font-family: inherit;
@@ -258,6 +254,7 @@ th {
 	height: 400px;
 	overflow-y: scroll;
 	padding: 20px;
+	margin-bottom: 30px;
 }
 
 .chat-user {
@@ -265,6 +262,8 @@ th {
 	border-radius: 5px;
 	padding: 20px;
 	margin: 10px 0;
+	word-wrap: break-word;
+	white-space: pre-wrap;
 }
 
 .chat-bot {
@@ -272,6 +271,8 @@ th {
 	border-radius: 5px;
 	padding: 20px;
 	margin: 10px 0;
+	word-wrap: break-word;
+	white-space: pre-wrap;
 }
 
 .chat-bubble {
