@@ -34,10 +34,29 @@ def read_entry_by_id(id: str) -> Journal | None:
         return None
 
 
-def read_recent_entry() -> Journal | None:
+def read_last_entry(user_id: str) -> Journal | None:
     try:
         with Session() as session:
-            result = session.query(Journal).order_by(desc(Journal.created_at)).first()
+            result = (
+                session.query(Journal)
+                .filter(Journal.user_id == user_id)
+                .order_by(desc(Journal.created_at))
+                .first()
+            )
         return result
+    except:
+        return None
+
+
+def read_recent_entries(user_id: str, count: int = 5) -> list[Journal] | None:
+    try:
+        with Session() as session:
+            result = (
+                session.query(Journal)
+                .filter(Journal.user_id == user_id)
+                .order_by(desc(Journal.created_at))
+                .limit(count)
+            )
+        return result.all()
     except:
         return None

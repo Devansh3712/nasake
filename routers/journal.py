@@ -33,7 +33,7 @@ async def create_journal_entry(
             status.HTTP_401_UNAUTHORIZED,
         )
     today = datetime.now()
-    recent_entry = read_recent_entry()
+    recent_entry = read_last_entry(user.id)  # type: ignore
     diff = today - recent_entry.created_at  # type: ignore
     if diff.days < 1:
         return templates.TemplateResponse(
