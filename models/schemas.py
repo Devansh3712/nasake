@@ -40,3 +40,20 @@ class JournalRequest(BaseModel):
 class ChatbotRequest(BaseModel):
     message: str
     timestap: datetime = datetime.now()
+
+
+class TestScore(BaseModel):
+    score: tuple[int, int]
+    result: str
+
+
+class TestQuestion(BaseModel):
+    question: str
+    options: dict[str, int]
+
+
+class Test(BaseModel):
+    name: str
+    prompt: str
+    scores: list[TestScore]
+    content: dict[int, TestQuestion]

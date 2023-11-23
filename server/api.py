@@ -9,7 +9,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from config import settings
 from models.database import Base, engine
-from routers import auth, chat, journal, home
+from routers import auth, chat, journal, home, tests
 
 
 @asynccontextmanager
@@ -32,6 +32,7 @@ app.include_router(auth.router)
 app.include_router(chat.router)
 app.include_router(journal.router)
 app.include_router(home.router)
+app.include_router(tests.router)
 
 templates = Jinja2Templates("templates")
 

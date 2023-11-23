@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}Test{% endblock %} {% block content %}
+<div class="home">
+	<h2>{{ test.name }}</h2>
+	<p>{{ test.prompt }}</p>
+	<div class="test">
+		<form action="/tests/{{ name }}" method="post">
+			{% for index, body in test.content.items() %}
+			<div class="question">
+				<label>{{ index }}. {{ body.question }}</label>
+			</div>
+			{% for option in body.options %}
+			<div class="options">
+				<input
+					type="radio"
+					name="{{ index }}"
+					value="{{ body.options[option] }}"
+					required
+				/>
+				<label>{{ option }}</label>
+			</div>
+			{% endfor %} {% endfor %}
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

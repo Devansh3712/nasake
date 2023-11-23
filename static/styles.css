@@ -381,3 +381,36 @@ body::before {
 	-webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
+
+.test {
+	margin-bottom: 30px;
+}
+
+.question {
+	display: block;
+	padding: 10px;
+	font-size: 18px;
+}
+
+.options {
+	display: block;
+	padding: 3px;
+	margin-left: 20px;
+}
+
+.test button {
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 100px;
+	height: 35px;
+	border: 1px solid #956b78;
+	border-radius: 20px;
+	background-color: #c38d9e;
+	color: white;
+	font-family: inherit;
+}
+
+.test button:hover {
+	cursor: pointer;
+	background-color: #956b78;
+}
