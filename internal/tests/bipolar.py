@@ -1,6 +1,6 @@
 from models.schemas import Test, TestScore, TestQuestion
 
-options = {"YES": 0, "NO": 1}
+options = {"YES": 1, "NO": 0}
 
 bipolar_test = Test(
     name="Bipolar Test",

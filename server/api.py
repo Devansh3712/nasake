@@ -55,3 +55,8 @@ async def login(request: Request):
 @app.get("/helplines", response_class=HTMLResponse)
 async def helplines(request: Request):
     return templates.TemplateResponse("helplines.html", {"request": request})
+
+
+@app.get("/tests")
+async def tests_list(request: Request):
+    return templates.TemplateResponse("tests.html", {"request": request})

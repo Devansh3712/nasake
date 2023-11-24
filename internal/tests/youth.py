@@ -167,7 +167,7 @@ youth_test = Test(
         ),
         36: TestQuestion(
             question="Do you have any emotional or behavioral problems for which you need help?",
-            options={"YES": 0, "NO": 1},
+            options={"YES": 1, "NO": 0},
         ),
     },
 )

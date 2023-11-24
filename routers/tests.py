@@ -1,7 +1,6 @@
 from fastapi import status, APIRouter, Depends, Request
 from fastapi.templating import Jinja2Templates
 
-from internal.error import Unauthorized
 from internal.session import get_current_user
 from internal.tests.adhd import adhd_test
 from internal.tests.anxiety import anxiety_test
@@ -27,27 +26,8 @@ tests = {
 }
 
 
-@router.get("/")
-async def tests_list(request: Request, user: User | None = Depends(get_current_user)):
-    if not user:
-        return templates.TemplateResponse(
-            "error.html",
-            {"request": request, "error": Unauthorized},
-            status.HTTP_401_UNAUTHORIZED,
-        )
-    return templates.TemplateResponse("tests.html", {"request": request})
-
-
 @router.get("/{name}")
-async def render_test(
-    name: str, request: Request, user: User | None = Depends(get_current_user)
-):
-    if not user:
-        return templates.TemplateResponse(
-            "error.html",
-            {"request": request, "error": Unauthorized},
-            status.HTTP_401_UNAUTHORIZED,
-        )
+async def render_test(name: str, request: Request):
     if name not in tests.keys():
         return templates.TemplateResponse(
             "error.html", {"request": request}, status.HTTP_404_NOT_FOUND
@@ -61,14 +41,26 @@ async def render_test(
 async def score_test(
     name: str, request: Request, user: User | None = Depends(get_current_user)
 ):
-    if not user:
+    if name not in tests.keys():
         return templates.TemplateResponse(
-            "error.html",
-            {"request": request, "error": Unauthorized},
-            status.HTTP_401_UNAUTHORIZED,
+            "error.html", {"request": request}, status.HTTP_404_NOT_FOUND
         )
     if name not in tests.keys():
         return templates.TemplateResponse(
             "error.html", {"request": request}, status.HTTP_404_NOT_FOUND
         )
     form = await request.form()
+    score = 0
+    for _, value in form.items():
+        score += int(value)  # type: ignore
+    result = ...
+    for score_range in tests[name].scores:
+        if score_range.score[0] <= score and score_range.score[1] >= score:
+            result = score_range.result
+            break
+    if user:
+        ...
+    return templates.TemplateResponse(
+        "result.html",
+        {"request": request, "test": tests[name], "score": score, "result": result},
+    )

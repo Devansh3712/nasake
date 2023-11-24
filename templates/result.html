@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}Results{% endblock %} {% block content
+%}
+<div class="home">
+	<h2>{{ test.name }} Result</h2>
+	<p style="font-size: 18px">Your results - <b>{{ result }}</b></p>
+	<p>Your score: {{ score }} / {{ test.scores[-1].score[-1] }}</p>
+	<p>
+		These results are not meant to be a diagnosis. You can meet with a doctor or
+		therapist to get a diagnosis and/or access therapy or medications. Sharing
+		these results with someone you trust can be a great place to start.
+	</p>
+	<p style="font-size: 18px">
+		<b>Interpreting your total score:</b>
+	</p>
+
+	<ul>
+		{% for score in test.scores %} {% if score.score[0] == score.score[1] %}
+		<li>{{ score.score[0] }}: {{ score.result }}</li>
+		{% else %}
+		<li>{{ score.score[0] }} - {{ score.score[1] }}: {{ score.result }}</li>
+		{% endif %} {% endfor %}
+	</ul>
+</div>
+{% endblock %}

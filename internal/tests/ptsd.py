@@ -1,6 +1,6 @@
 from models.schemas import Test, TestQuestion, TestScore
 
-options = {"YES": 0, "NO": 1}
+options = {"YES": 1, "NO": 0}
 
 ptsd_test = Test(
     name="PTSD Test",

@@ -6,6 +6,19 @@ body {
 	color: #ffffff;
 }
 
+body::before {
+	content: 'なさけ';
+	position: fixed;
+	transform: rotate(90deg);
+	font-family: inherit;
+	font-size: 200px;
+	opacity: 40%;
+	font-weight: bolder;
+	top: 25%;
+	right: -5%;
+	z-index: -1;
+}
+
 .navbar {
 	height: 100%;
 	width: 10%;
@@ -39,19 +52,6 @@ body {
 .auth,
 .error {
 	margin: 3% 30% 0% 13%;
-}
-
-body::before {
-	content: 'なさけ';
-	position: absolute;
-	transform: rotate(90deg);
-	font-family: inherit;
-	font-size: 200px;
-	opacity: 40%;
-	font-weight: bolder;
-	top: 25%;
-	right: -5%;
-	z-index: -1;
 }
 
 .heading {

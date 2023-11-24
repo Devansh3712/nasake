@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}Tests{% endblock %} {% block content
-%}
+{% set active_page = "tests" %} {% extends "base.html" %} {% block title
+%}Tests{% endblock %} {% block content %}
 <div class="home">
 	<h2>Mental Health Tests</h2>
 	<p>
@@ -11,7 +11,7 @@
 	<div class="card-column">
 		<div class="card">
 			<p>Depression Test</p>
-			<a href="depression-test">
+			<a href="/tests/depression-test">
 				<button><i class="fa-solid fa-arrow-right"></i></button>
 			</a>
 		</div>
@@ -19,7 +19,7 @@
 	<div class="card-column">
 		<div class="card">
 			<p>Anxiety Test</p>
-			<a href="anxiety-test">
+			<a href="/tests/anxiety-test">
 				<button><i class="fa-solid fa-arrow-right"></i></button>
 			</a>
 		</div>
@@ -27,7 +27,7 @@
 	<div class="card-column">
 		<div class="card">
 			<p>ADHD Test</p>
-			<a href="adhd-test">
+			<a href="/tests/adhd-test">
 				<button><i class="fa-solid fa-arrow-right"></i></button>
 			</a>
 		</div>
@@ -35,7 +35,7 @@
 	<div class="card-column">
 		<div class="card">
 			<p>Bipolar Test</p>
-			<a href="bipolar-test">
+			<a href="/tests/bipolar-test">
 				<button><i class="fa-solid fa-arrow-right"></i></button>
 			</a>
 		</div>
@@ -45,7 +45,7 @@
 	<div class="card-column">
 		<div class="card">
 			<p>Psychosis Test</p>
-			<a href="psychosis-test">
+			<a href="/tests/psychosis-test">
 				<button><i class="fa-solid fa-arrow-right"></i></button>
 			</a>
 		</div>
@@ -53,7 +53,7 @@
 	<div class="card-column">
 		<div class="card">
 			<p>PTSD Test</p>
-			<a href="ptsd-test">
+			<a href="/tests/ptsd-test">
 				<button><i class="fa-solid fa-arrow-right"></i></button>
 			</a>
 		</div>
@@ -61,7 +61,7 @@
 	<div class="card-column">
 		<div class="card">
 			<p>Youth Test</p>
-			<a href="youth-test">
+			<a href="/tests/youth-test">
 				<button><i class="fa-solid fa-arrow-right"></i></button>
 			</a>
 		</div>
