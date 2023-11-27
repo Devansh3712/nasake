@@ -82,7 +82,7 @@ async def get_journal_entry(
             {"request": request, "error": Unauthorized},
             status.HTTP_401_UNAUTHORIZED,
         )
-    entry = read_entry_by_id(id)
+    entry = read_entry_by_id(id, user.id)  # type: ignore
     if not entry:
         return templates.TemplateResponse(
             "error.html",

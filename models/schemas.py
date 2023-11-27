@@ -57,3 +57,11 @@ class Test(BaseModel):
     prompt: str
     scores: list[TestScore]
     content: dict[int, TestQuestion]
+
+
+class TestResult(BaseModel):
+    id: str = uuid4().hex
+    user_id: str
+    name: str
+    score: int
+    created_at: datetime = datetime.now()

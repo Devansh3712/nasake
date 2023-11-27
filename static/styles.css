@@ -17,6 +17,8 @@ body::before {
 	top: 25%;
 	right: -5%;
 	z-index: -1;
+	-webkit-text-stroke-width: 5px;
+	-webkit-text-fill-color: rgb(82, 169, 159);
 }
 
 .navbar {

@@ -23,7 +23,9 @@
 				>Tests</a
 			>
 			<a href="#" class="{{ 'active' if active_page == 'search' }}">Search</a>
-			<a href="#" class="{{ 'active' if active_page == 'profile' }}">Profile</a>
+			<a href="/profile" class="{{ 'active' if active_page == 'profile' }}"
+				>Profile</a
+			>
 			<a href="/logout">Logout</a>
 		</div>
 		{% block content %}{% endblock %}

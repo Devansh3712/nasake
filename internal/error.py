@@ -53,3 +53,9 @@ DailyJournalCompleted: Callable[[datetime], Error] = lambda date: Error(
     detail=f"Journal for {date.strftime('%d %B, %Y')} has already been written.\
         You can only write one entry per day, try again tomorrow",
 )
+
+TestScoreDoesNotExist = Error(
+    code=status.HTTP_404_NOT_FOUND,
+    message="Test score does not exist",
+    detail="The test score you're trying to find doesn't exist",
+)

@@ -18,4 +18,6 @@ async def profile(request: Request, user: User | None = Depends(get_current_user
             {"request": request, "error": Unauthorized},
             status.HTTP_401_UNAUTHORIZED,
         )
-    return templates.TemplateResponse("profile.html", {"request": request})
+    return templates.TemplateResponse(
+        "profile.html", {"request": request, "user": user}
+    )

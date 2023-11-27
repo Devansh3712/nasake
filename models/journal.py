@@ -25,10 +25,14 @@ def create_entry(data: JournalRequest, emotions: dict[str, float]) -> bool:
         return False
 
 
-def read_entry_by_id(id: str) -> Journal | None:
+def read_entry_by_id(id: str, user_id: str) -> Journal | None:
     try:
         with Session() as session:
-            result = session.query(Journal).filter(Journal.id == id).one()
+            result = (
+                session.query(Journal)
+                .filter(Journal.id == id, Journal.user_id == user_id)
+                .one()
+            )
         return result
     except:
         return None

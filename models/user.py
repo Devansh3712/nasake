@@ -2,8 +2,9 @@ from sqlalchemy import Column, DateTime, String
 from sqlalchemy.orm import relationship
 
 from models.database import Base, Session
-from models.journal import Journal as _
+from models.journal import Journal
 from models.schemas import UserSignUp
+from models.test import Test
 
 
 class User(Base):
@@ -15,7 +16,8 @@ class User(Base):
     email = Column("email", String, unique=True, nullable=False)
     password = Column("password", String, nullable=False)
     created_at = Column("created_at", DateTime, nullable=False)
-    journals = relationship("Journal")
+    journals = relationship(Journal, cascade="all,delete")
+    tests = relationship(Test, cascade="all,delete")
 
 
 def create_user(data: UserSignUp) -> bool:
