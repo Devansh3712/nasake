@@ -2,5 +2,38 @@
 %}Profile{% endblock %}{% block content %}
 <div class="home">
 	<h2>User Profile</h2>
+	<div class="profile">
+		<p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
+		<p><b>Email:</b> {{ user.email }}</p>
+		<p><b>Joined:</b> {{ user.created_at.strftime("%d %B, %Y") }}</p>
+		<p><b>Journal Entries:</b> {{ user.journals|length }}</p>
+		<p><b>Tests Taken:</b> {{ user.tests|length }}</p>
+	</div>
+</div>
+<div class="row">
+	<div class="card-column">
+		<h3>Recent Journal Entries</h3>
+		<ul>
+			{% for journal in user.journals[:5] %}
+			<li>
+				<a href="/journal/{{ journal.id }}"
+					>{{ journal.created_at.strftime("%d %B, %Y") }}</a
+				>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="card-column">
+		<h3>Recent Tests Taken</h3>
+		<ul>
+			{% for test in user.tests[:5] %}
+			<li>
+				<a href="/tests/score/{{ test.id }}"
+					>{{ test.created_at.strftime("%d %B, %Y") }}</a
+				>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
 </div>
 {% endblock %}

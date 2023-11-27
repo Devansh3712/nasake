@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, String
+from sqlalchemy import desc, Column, DateTime, String
 from sqlalchemy.orm import relationship
 
 from models.database import Base, Session
@@ -16,8 +16,15 @@ class User(Base):
     email = Column("email", String, unique=True, nullable=False)
     password = Column("password", String, nullable=False)
     created_at = Column("created_at", DateTime, nullable=False)
-    journals = relationship(Journal, cascade="all,delete")
-    tests = relationship(Test, cascade="all,delete")
+    journals = relationship(
+        Journal,
+        cascade="all,delete",
+        lazy="selectin",
+        order_by=desc(Journal.created_at),
+    )
+    tests = relationship(
+        Test, cascade="all,delete", lazy="selectin", order_by=desc(Test.created_at)
+    )
 
 
 def create_user(data: UserSignUp) -> bool:
