@@ -1,0 +1,44 @@
+{% set active_page = "disorders" %} {% extends "base.html" %} {% block title
+%}Tests{% endblock %} {% block content %}
+<div class="home">
+	<h2>Mental Health Disorders</h2>
+	<p>
+		Information relating to general mental health, physical health, work &
+		study.
+	</p>
+</div>
+<div class="card-row">
+	<div class="card-column">
+		<div class="card">
+			<p>Self Harm</p>
+			<a href="/disorders/self-harm">
+				<button><i class="fa-solid fa-arrow-right"></i></button>
+			</a>
+		</div>
+	</div>
+	<div class="card-column">
+		<div class="card">
+			<p>Psychosis</p>
+			<a href="/disorders/psychosis">
+				<button><i class="fa-solid fa-arrow-right"></i></button>
+			</a>
+		</div>
+	</div>
+	<div class="card-column">
+		<div class="card">
+			<p>Anxiety</p>
+			<a href="/disorders/anxiety">
+				<button><i class="fa-solid fa-arrow-right"></i></button>
+			</a>
+		</div>
+	</div>
+	<div class="card-column">
+		<div class="card">
+			<p>Depression</p>
+			<a href="/disorders/depression">
+				<button><i class="fa-solid fa-arrow-right"></i></button>
+			</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

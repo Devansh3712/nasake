@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import status, FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -8,8 +8,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
 from config import settings
+from internal.error import InternalServerError, PageNotFound
 from models.database import Base, engine
-from routers import auth, chat, journal, home, profile, tests
+from routers import (
+    auth,
+    chat,
+    disorders,
+    journal,
+    home,
+    profile,
+    search,
+    tests,
+)
 
 
 @asynccontextmanager
@@ -30,12 +40,28 @@ app.add_middleware(
 )
 app.include_router(auth.router)
 app.include_router(chat.router)
+app.include_router(disorders.router)
 app.include_router(journal.router)
 app.include_router(home.router)
 app.include_router(profile.router)
+app.include_router(search.router)
 app.include_router(tests.router)
 
 templates = Jinja2Templates("templates")
+
+
+@app.exception_handler(status.HTTP_404_NOT_FOUND)
+async def not_found(request: Request, exception: Exception):
+    return templates.TemplateResponse(
+        "error.html", {"request": request, "error": PageNotFound}
+    )
+
+
+@app.exception_handler(status.HTTP_500_INTERNAL_SERVER_ERROR)
+async def internal_server_error(request: Request, exception: Exception):
+    return templates.TemplateResponse(
+        "error.html", {"request": request, "error": InternalServerError}
+    )
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -58,6 +84,6 @@ async def helplines(request: Request):
     return templates.TemplateResponse("helplines.html", {"request": request})
 
 
-@app.get("/tests")
-async def tests_list(request: Request, response_class=HTMLResponse):
+@app.get("/tests", response_class=HTMLResponse)
+async def tests_list(request: Request):
     return templates.TemplateResponse("tests.html", {"request": request})

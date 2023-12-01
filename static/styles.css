@@ -426,3 +426,45 @@ a {
 	font-size: 18px;
 	margin-bottom: -10px;
 }
+
+.search select {
+	font-family: inherit;
+	background-color: #0e7c6e;
+	color: white;
+	padding: 5px;
+}
+
+.search button {
+	margin-left: 15px;
+	width: 100px;
+	height: 35px;
+	border: 1px solid #956b78;
+	border-radius: 20px;
+	background-color: #c38d9e;
+	color: white;
+	font-family: inherit;
+}
+
+.search button:hover {
+	cursor: pointer;
+	background-color: #956b78;
+}
+
+.search table {
+	border-collapse: collapse;
+}
+
+.search th,
+td {
+	border: 2px solid #0e7c6e;
+	text-align: left;
+	padding: 10px;
+}
+
+.search tr:nth-child(even) {
+	background-color: #378480;
+}
+
+#search-result {
+	margin-top: 20px;
+}

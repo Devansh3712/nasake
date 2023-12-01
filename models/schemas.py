@@ -1,4 +1,6 @@
 from datetime import datetime
+from enum import Enum
+from typing import Optional
 from uuid import uuid4
 
 import bcrypt
@@ -39,7 +41,7 @@ class JournalRequest(BaseModel):
 
 class ChatbotRequest(BaseModel):
     message: str
-    timestap: datetime = datetime.now()
+    timestamp: datetime = datetime.now()
 
 
 class TestScore(BaseModel):
@@ -65,3 +67,19 @@ class TestResult(BaseModel):
     name: str
     score: int
     created_at: datetime = datetime.now()
+
+
+class Mode(Enum):
+    online = "online"
+    offline = "offline"
+    both = "both"
+
+
+class TherapistData(BaseModel):
+    id: str = uuid4().hex
+    name: str
+    location: str
+    mode: Mode
+    contact: Optional[str] = None
+    email: Optional[str] = None
+    fees: int

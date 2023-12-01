@@ -32,15 +32,16 @@ async def create_journal_entry(
             {"request": request, "error": Unauthorized},
             status.HTTP_401_UNAUTHORIZED,
         )
-    today = datetime.now()
     recent_entry = read_last_entry(user.id)  # type: ignore
-    diff = today - recent_entry.created_at  # type: ignore
-    if diff.days < 1:
-        return templates.TemplateResponse(
-            "error.html",
-            {"request": request, "error": DailyJournalCompleted(today)},
-            status.HTTP_400_BAD_REQUEST,
-        )
+    if recent_entry:
+        today = datetime.now()
+        diff = today - recent_entry.created_at  # type: ignore
+        if diff.days < 1:
+            return templates.TemplateResponse(
+                "error.html",
+                {"request": request, "error": DailyJournalCompleted(today)},
+                status.HTTP_400_BAD_REQUEST,
+            )
     return templates.TemplateResponse("journal.html", {"request": request})
 
 

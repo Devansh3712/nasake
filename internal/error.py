@@ -5,6 +5,18 @@ from fastapi import status
 
 from models.schemas import Error
 
+PageNotFound = Error(
+    code=status.HTTP_404_NOT_FOUND,
+    message="Page Not Found",
+    detail="The page you're trying to find does not exist",
+)
+
+InternalServerError = Error(
+    code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    message="Internal Server Error",
+    detail="There is a problem with the server, try again later",
+)
+
 IncorrectPassword = Error(
     code=status.HTTP_401_UNAUTHORIZED,
     message="Incorrect Password",

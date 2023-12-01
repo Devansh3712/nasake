@@ -1,0 +1,18 @@
+{% set active_page = "search" %}{% extends "base.html" %}{% block title
+%}Search{% endblock %} {% block content %}
+<script src="{{ url_for('static', path='/search.js') }}" defer></script>
+<div class="home">
+	<h2>Search Therapists</h2>
+	<div class="search">
+		<label>Mode:</label>
+		<select name="mode" id="mode">
+			<option value="all">All</option>
+			<option value="offline">Offline</option>
+			<option value="online">Online</option>
+			<option value="both">Both</option>
+		</select>
+		<button id="submit">Submit</button>
+		<div id="search-result"></div>
+	</div>
+</div>
+{% endblock %}
