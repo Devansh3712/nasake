@@ -4,22 +4,29 @@ async function searchTherapists() {
 	const mode = document.getElementById('mode');
 	const modeValue = mode.options[mode.selectedIndex].value;
 
+	const table = document.createElement('table');
+	table.innerHTML = `
+	<tr>
+		<th>Name</th>
+    	<th>Location</th>
+    	<th>Fees</th>
+    	<th>Mode</th>
+    	<th>Contact</th>
+    	<th>Email</th>
+	</tr>
+	`;
+
 	const response = await fetch(
 		'http://localhost:8000/search/therapist?mode=' + modeValue,
 		{
 			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		},
 	);
-	const table = document.createElement('table');
-	const tr = document.createElement('tr');
-	tr.innerHTML = `<th>Name</th>
-    <th>Location</th>
-    <th>Fees</th>
-    <th>Mode</th>
-    <th>Contact</th>
-    <th>Email</th>`;
-	table.appendChild(tr);
 	const therapists = await response.json();
+
 	Object.keys(therapists).forEach((key) => {
 		const therapist = therapists[key];
 		const tr = document.createElement('tr');
@@ -27,14 +34,16 @@ async function searchTherapists() {
 			const td = document.createElement('td');
 			switch (value) {
 				case 'contact':
-					if (therapist[value][0] !== undefined) {
-						td.textContent = therapist[value][0].contact;
-					} else td.textContent = 'None';
+					td.textContent =
+						therapist[value][0] === undefined
+							? 'None'
+							: therapist[value][0].contact;
 					break;
 				case 'email':
-					if (therapist[value][0] !== undefined) {
-						td.textContent = therapist[value][0].email;
-					} else td.textContent = 'None';
+					td.textContent =
+						therapist[value][0] === undefined
+							? 'None'
+							: therapist[value][0].email;
 					break;
 				case 'id':
 					continue;
