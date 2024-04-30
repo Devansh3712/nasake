@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import status, FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
@@ -53,14 +53,23 @@ templates = Jinja2Templates("templates")
 @app.exception_handler(status.HTTP_404_NOT_FOUND)
 async def not_found(request: Request, exception: Exception):
     return templates.TemplateResponse(
-        "error.html", {"request": request, "error": PageNotFound}
+        "error.html",
+        {
+            "request": request,
+            "error": PageNotFound,
+            "image_path": "static/images/not_found.png",
+        },
     )
 
 
 @app.exception_handler(status.HTTP_500_INTERNAL_SERVER_ERROR)
 async def internal_server_error(request: Request, exception: Exception):
     return templates.TemplateResponse(
-        "error.html", {"request": request, "error": InternalServerError}
+        "error.html",
+        {
+            "request": request,
+            "error": InternalServerError,
+        },
     )
 
 
@@ -87,3 +96,8 @@ async def helplines(request: Request):
 @app.get("/tests", response_class=HTMLResponse)
 async def tests_list(request: Request):
     return templates.TemplateResponse("tests.html", {"request": request})
+
+
+@app.get("/bala")
+async def depressed(request: Request):
+    return RedirectResponse("https://www.youtube.com/shorts/-B19CcU3dhY")

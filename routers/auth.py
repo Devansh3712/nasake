@@ -64,4 +64,4 @@ async def logout(request: Request, user: User | None = Depends(get_current_user)
         )
     # Delete a user session
     del request.session["user_id"]
-    return templates.TemplateResponse("message.html", {"request": request})
+    return RedirectResponse("/")

@@ -3,5 +3,8 @@
 <div class="error">
 	<h1>{{ error.code }}: {{ error.message }}</h1>
 	<p>{{ error.detail }}</p>
+	{% if image_path %}
+	<img src="{{ image_path }}" height="300" width="500"></img>
+	{% endif %}
 </div>
 {% endblock %}
