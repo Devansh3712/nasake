@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  nasake:
+    build: .
+    env_file: ./.env
+    command: gunicorn -c gunicorn.conf.py server.app:app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15-alpine
+    expose:
+      - 5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=nasake
+
+volumes:
+  db:
