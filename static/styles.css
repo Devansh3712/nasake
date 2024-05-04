@@ -247,6 +247,22 @@ a {
 	margin-top: 40px;
 }
 
+.analysis button {
+	margin-left: 15px;
+	width: 150px;
+	height: 35px;
+	border: 1px solid #956b78;
+	border-radius: 20px;
+	background-color: #c38d9e;
+	color: white;
+	font-family: inherit;
+}
+
+.analysis button:hover {
+	cursor: pointer;
+	background-color: #956b78;
+}
+
 .chatbot input {
 	margin-bottom: 10px;
 	font-family: inherit;

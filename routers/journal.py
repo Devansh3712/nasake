@@ -4,7 +4,7 @@ from fastapi import status, APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from internal.analysis import emotion_analyzer
+from internal.analysis import calculate_mood, emotion_analyzer
 from internal.error import (
     DailyJournalCompleted,
     JournalEntryDoesNotExist,
@@ -90,6 +90,9 @@ async def get_journal_entry(
             {"request": request, "error": JournalEntryDoesNotExist},
             status.HTTP_404_NOT_FOUND,
         )
+
+    print(sum(entry.emotions.values()))
+    mood = calculate_mood(entry.emotions)
     return templates.TemplateResponse(
-        "analysis.html", {"request": request, "entry": entry}
+        "analysis.html", {"request": request, "entry": entry, "mood": mood}
     )

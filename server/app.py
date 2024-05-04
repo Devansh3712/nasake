@@ -18,6 +18,7 @@ from routers import (
     home,
     profile,
     search,
+    spotify,
     tests,
 )
 
@@ -45,6 +46,7 @@ app.include_router(journal.router)
 app.include_router(home.router)
 app.include_router(profile.router)
 app.include_router(search.router)
+app.include_router(spotify.router)
 app.include_router(tests.router)
 
 templates = Jinja2Templates("templates")
