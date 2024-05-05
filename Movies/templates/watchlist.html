@@ -1,0 +1,45 @@
+<!-- watchlist.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Watchlist</title>
+</head>
+<body>
+    <h1>My Watchlist</h1>
+    <ul>
+        {% for movie_title in watchlist %}
+            <li>{{ movie_title }} <a href="#" class="removeLink" data-title="{{ movie_title }}">Remove</a></li>
+        {% endfor %}
+    </ul>
+    <p><a href="/">Back to Random Movie</a></p>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.removeLink').click(function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                var title = $(this).data('title'); // Get movie title from data attribute
+                removeMovieFromWatchlist(title); // Call function to remove movie
+            });
+
+            function removeMovieFromWatchlist(title) {
+                $.ajax({
+                    type: 'GET',
+                    url: `/remove_from_watchlist?title=${encodeURIComponent(title)}`,
+                    success: function(response) {
+                        alert(response); // Show success or error message
+                        if (response.startsWith("Removed")) {
+                            window.location.reload(); // Reload the page on successful removal
+                        }
+                    },
+                    error: function(err) {
+                        alert("Error occurred while removing from Watchlist");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

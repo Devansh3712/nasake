@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Movie Details</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Cinema for Wellness</h1>
+    <p>Discover a world of cinematic wellness with our curated selection of movies designed to uplift your spirits and promote mental well-being. Our "Cinema for Wellness" suggests movies backed by psychologists, specifically chosen to boost your mood and enhance your mental health journey. Dive into a realm of positivity, inspiration, and emotional balance with films that resonate with your wellness goals. Elevate your movie-watching experience with our selection of movies, crafted to nurture your mind and soul.</p>
+    <div>
+        <h2>{{ movie_info.Title }}</h2>
+        <p><strong>Year:</strong> {{ movie_info.Year }}</p>
+        <p><strong>IMDB Rating:</strong> {{ movie_info.imdbRating }}</p>
+        <p><strong>Runtime:</strong> {{ movie_info.Runtime }}</p>
+        <p><strong>Genre:</strong> {{ movie_info.Genre }}</p>
+        <p><strong>Director:</strong> {{ movie_info.Director }}</p>
+        <p><strong>Cast:</strong> {{ movie_info.Actors }}</p>
+        <p><strong>Plot:</strong> {{ movie_info.Plot }}</p> 
+        <form id="addWatchlistForm">
+            <input type="hidden" name="title" value="{{ movie_info.Title }}">
+            <button type="submit">Add to Watchlist</button>
+        </form>
+        <button id="nextMovieBtn">Next Movie</button>
+    </div>
+    <div>
+        <p><a href="/watchlist" onclick="document.cookie='session_token={{ session_token }}'">My Watchlist</a></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#addWatchlistForm').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+                $.ajax({
+                    type: 'POST',
+                    url: '/add_to_watchlist',
+                    data: $(this).serialize(), // Serialize form data
+                    success: function(response) {
+                        alert("Added to Watchlist");
+                    },
+                    error: function(err) {
+                        alert("Error occurred while adding to Watchlist");
+                    }
+                });
+            });
+
+            $('#nextMovieBtn').click(function() {
+                window.location.reload(); // Reload the page to get a new random movie
+            });
+        });
+    </script>
+</body>
+</html>
