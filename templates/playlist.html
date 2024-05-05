@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Moodtape{% endblock %} {% block content
+%}
+<div class="home">
+	<h2>Songs Recommendations Based on Your Mood</h2>
+	<p>We have made a playlist specially for you, based on your mood that we analysed through your journal entry.</p>
+	{{ embed|safe }}
+</div>
+{% endblock %}

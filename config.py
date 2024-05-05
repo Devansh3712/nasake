@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_DATABASE: str
     OPENAI_API_KEY: str
+    SPOTIFY_CLIENT_ID: str
+    SPOTIFY_CLIENT_SECRET: str
+    SPOTIFY_REDIRECT_URI: str
 
 
 @lru_cache()

@@ -16,7 +16,7 @@ client = Client(api_key=settings.OPENAI_API_KEY)
 messages = [
     {
         "role": "system",
-        "content": "Your are tsuki, an assistant who will listen to people vent out whatever they want to. \
+        "content": "You are tsuki, an assistant who will listen to people vent out whatever they want to. \
             Sympathise with them and give them some valuable insights that can be useful in their situation.",
     }
 ]

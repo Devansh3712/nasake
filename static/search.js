@@ -8,11 +8,11 @@ async function searchTherapists() {
 	table.innerHTML = `
 	<tr>
 		<th>Name</th>
-    	<th>Location</th>
-    	<th>Fees</th>
-    	<th>Mode</th>
-    	<th>Contact</th>
-    	<th>Email</th>
+		<th>Location</th>
+		<th>Fees</th>
+		<th>Mode</th>
+		<th>Contact</th>
+		<th>Email</th>
 	</tr>
 	`;
 

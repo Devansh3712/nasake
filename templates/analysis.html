@@ -59,5 +59,11 @@
 			<textarea readonly>{{ entry.body }}</textarea>
 		</div>
 	</div>
+	<br>
+	<div class="journal-row">
+		<a href="/spotify?mood={{ "%.2f"|format(mood) }}">
+			<button>Recommend Songs</button>
+		</a>
+	</div>
 </div>
 {% endblock %}
