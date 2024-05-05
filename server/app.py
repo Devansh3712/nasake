@@ -13,6 +13,7 @@ from models.database import Base, engine
 from routers import (
     auth,
     chat,
+    chat_room,
     disorders,
     journal,
     home,
@@ -41,6 +42,7 @@ app.add_middleware(
 )
 app.include_router(auth.router)
 app.include_router(chat.router)
+app.include_router(chat_room.router)
 app.include_router(disorders.router)
 app.include_router(journal.router)
 app.include_router(home.router)
