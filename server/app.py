@@ -105,3 +105,8 @@ async def tests_list(request: Request):
 @app.get("/bala")
 async def depressed(request: Request):
     return RedirectResponse("https://www.youtube.com/shorts/-B19CcU3dhY")
+
+
+@app.get("/zen")
+async def zen_mode(request: Request):
+    return templates.TemplateResponse("zen.html", {"request": request})
