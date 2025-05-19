@@ -29,9 +29,9 @@ make run
 ```
 
 ## To-Do
-- [ ] Dockerize application
+- [x] Dockerize application
 - [ ] Create login for therapists
-- [ ] Add movie/song recommendations based on journal entry
+- [x] Add song recommendations based on journal entry
 - [ ] Work on the UI and UX
-- [ ] Add meditation guides, zen mode
+- [x] Add meditation guides, zen mode
 - [ ] Add crisis mode to chatbot (assistance in case of emergencies)

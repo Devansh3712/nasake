@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SereneSpace Chat Room</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap');
+
+body {
+	background-color: rgb(82, 169, 159);
+	font-family: 'Lexend', sans-serif;
+	color: #ffffff;
+}
+
+.nvbar {
+	height: 100%;
+	width: 10%;
+	z-index: 1;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: #e27d60;
+	overflow: hidden;
+}
+
+.nvbar a {
+	padding: 20px 10px 20px 25px;
+	text-decoration: none;
+	color: #ffffff;
+	display: block;
+	font-size: 18px;
+	cursor: pointer;
+	border-bottom: 2px solid #e8a87c;
+}
+
+.nvbar a:hover {
+	background-color: #e8a87c;
+}
+
+.nvbar a.active {
+	background-color: #e8a87c;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  background-color: #e27d60;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#chat {
+  display: none;
+}
+
+li {
+  display: block;
+}
+
+.user-message {
+  background-color: #17A2B8;
+  color: #fff;
+  border-radius: 0.5em;
+  padding: 5px 10px;
+  margin: 5px 0;
+  float: left;
+}
+
+.other-message {
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 0.5em;
+  padding: 5px 10px;
+  margin: 5px 0;
+  float: right;
+}
+</style>
+
+<body>
+  <div class="nvbar">
+    <a href="/home">Home</a>
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+    <a href="/disorders">Disorders</a>
+    <a href="/tests">Tests</a>
+    <a href="/search">Search</a>
+    <a href="/chat-room" class="active">Chat</a>
+    <a href="/profile">Profile</a>
+    <a href="/auth/logout">Logout</a>
+  </div>
+  <div class="container">
+    <h1 class="text-center">SereneSpace</h1>
+    <div id="chat" class="jumbotron">
+      <ul id="messages"></ul>
+    </div>
+    <div id="username-form">
+      <button id="open-modal" class="btn btn-success btn-lg">Join</button>
+    </div>
+    <div class="input-group mb-3" id="message-input" style="display: none;">
+      <input type="text" id="message" class="form-control"
+        placeholder="Type your message">
+      <div class="input-group-append">
+        <button id="send" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="usernameModal" tabindex="-1" role="dialog"
+    aria-labelledby="usernameModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="usernameModalLabel" style="color: black;">Enter Your Username
+          </h5>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="usernameInput" class="form-control"
+            placeholder="Your username">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="join" class="btn btn-primary"
+            data-dismiss="modal">Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="{{url_for('static', path='/chat_room.js')}}"></script>
+</body>
+</html>
